@@ -8,7 +8,7 @@ class UserProfilePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title:Text(
+        title: Text(
           'Profile User',
           style: TextStyle(
             fontSize: 26,
@@ -17,7 +17,15 @@ class UserProfilePage extends StatelessWidget {
         ),
         elevation: 12,
         backgroundColor: Colors.red,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.refresh),
+            color: Colors.white,
+            onPressed: () {},
+          ),
+        ],
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(120.0),
         child: Column(
