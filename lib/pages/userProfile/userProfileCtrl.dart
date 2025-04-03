@@ -7,6 +7,7 @@ import 'package:blog_mobile/pages/userProfile/userProfileState.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserProfileCtrl extends StateNotifier<UserProfileState>{
+
   var userNetworkService = getIt.get<BlogNetworkService>();
   var userLocalService = getIt.get<BlogLocalService>();
 
@@ -14,12 +15,21 @@ class UserProfileCtrl extends StateNotifier<UserProfileState>{
     // Ici, on pourrait ajouter une logique d'initialisation si nécessaire
   }
 
-  Future<void> recuperUser(int userId)async{
+  Future<void> recuperUser(User user)async{
+    var user= await userLocalService.recupererUserLocal();
+    state= state.copyWith(user: user);
+  }
+
+  Future<void> actualiserUser(User user)async {
+    state= state.copyWith(isLoading: true);
+    var user= await userLocalService.recupererUserLocal();
+    var new_user= await userNetworkService.recupererUser(user.token?? "");
+    state= state.copyWith(isLoading: false, user: new_user);
 
   }
 
-  Future<void> deconnecterUser(int userId)async{
 
-  }
+
+  Future<void> deconnecterUser(User user)async{}
 
 }
