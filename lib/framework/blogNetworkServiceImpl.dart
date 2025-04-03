@@ -23,12 +23,11 @@ class BlogNetworkServiceImpl implements BlogNetworkService{
         headers : {"content-type":"application/json"}
     ) ;
 
-    print(response.statusCode);
-    print(response.body);
     var codes=[200,201];
 
 
     var resultat=jsonDecode(response.body) as Map;
+
     if(!codes.contains(response .statusCode)){
       var error = resultat ["error"];
       throw Exception(error);

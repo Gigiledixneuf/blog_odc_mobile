@@ -21,6 +21,7 @@ class UserProfileCtrl extends StateNotifier<UserProfileState>{
   }
 
   Future<void> actualiserUser(User user)async {
+
     state= state.copyWith(isLoading: true);
     var user= await userLocalService.recupererUserLocal();
     var new_user= await userNetworkService.recupererUser(user.token?? "");
@@ -29,7 +30,12 @@ class UserProfileCtrl extends StateNotifier<UserProfileState>{
   }
 
 
+  Future<void> deconnecterUser(User user) async {
+    state= state.copyWith(isLoading: true);
 
-  Future<void> deconnecterUser(User user)async{}
+    var user= await userLocalService.deconnecterUser();
+
+    state= state.copyWith(isLoading: false);
+  }
 
 }
