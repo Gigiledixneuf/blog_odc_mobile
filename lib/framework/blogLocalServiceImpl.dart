@@ -21,7 +21,12 @@ class BlogLocalServiceImpl implements BlogLocalService{
   Future<bool> deconnecterUser() async{
    await box.remove("user");
    return true;
+  }
 
+  @override
+  Future<User> recupererUserLocal() {
+    // TODO: implement recupererUserLocal
+    throw UnimplementedError();
   }
 
 }
