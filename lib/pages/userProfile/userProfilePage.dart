@@ -1,10 +1,16 @@
+import 'package:blog_mobile/business/models/User.dart';
+import 'package:blog_mobile/pages/userProfile/userProfileCtrl.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserProfilePage extends StatelessWidget {
+class UserProfilePage extends ConsumerWidget {
+
   @override
-  Widget build(BuildContext context) {
-    final String userName = 'Big Jojo';  
-    final String userEmail = 'bigjojo@gmail.com';
+  Widget build(BuildContext context,WidgetRef ref) {
+
+    var state = ref.watch(UserProfileCtrlProvider);
+    var controller = ref.read(UserProfileCtrlProvider.notifier);
+
 
     return Scaffold(
       appBar: AppBar(
@@ -44,7 +50,7 @@ class UserProfilePage extends StatelessWidget {
             SizedBox(height: 20),
 
             Text(
-              userName,
+              state.user?.name??"",
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -53,7 +59,7 @@ class UserProfilePage extends StatelessWidget {
             SizedBox(height: 10),
             // Email de l'utilisateur
             Text(
-              userEmail,
+              state.user?.email??"",
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.grey,
