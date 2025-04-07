@@ -10,9 +10,7 @@ import 'package:http/http.dart' as http;
 
 class BlogNetworkServiceImpl implements BlogNetworkService{
 
-
-
-  //Authentification impl ===================================================
+  //Authentification impl ======================================================
   @override
   Future<User> authentifier (Authentification data) async {
     var url=Uri.parse("http://127.0.0.1:8000/api/login");
@@ -24,7 +22,6 @@ class BlogNetworkServiceImpl implements BlogNetworkService{
     ) ;
 
     var codes=[200,201];
-
 
     var resultat=jsonDecode(response.body) as Map;
 
@@ -38,7 +35,7 @@ class BlogNetworkServiceImpl implements BlogNetworkService{
   }
 
 
-  //Recuperer user impl ===================================================
+  //Recuperer user impl ========================================================
   @override
   Future<User> recupererUser(String token) async{
     var url = Uri.parse("http://127.0.0.1:8000/api/user");
@@ -63,16 +60,16 @@ class BlogNetworkServiceImpl implements BlogNetworkService{
     return recupererUserConnecter;
   }
 
-
-
 }
 
 void main () async{
-  var formulaire= Authentification(email: "ephraim30@gmail.com", password: "password");
-  var service=BlogNetworkServiceImpl();
-  var token="1|BFZ1RC5WMPXOGtLjbre50D4eNftagQJcPOW8NmNff3f8c688";
+  var formulaire= Authentification(email: "ggig19@gmail.com", password: "password");
+  var service = BlogNetworkServiceImpl();
+  //var connexion = service.authentifier(formulaire);
+  //print(connexion);
+
+  var token="1|9YtgyNY2eQxt1u8zyPwQnlTPBm7kJsV39n4kmIso35fda291";
   var user= await service.recupererUser(token);
   print(user.name);
   print(user.email);
-
 }
